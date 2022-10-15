@@ -36,7 +36,9 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
 */
-
+//counter1 variables is enclosed inside the function but not same as counter2.  
+//counter1 uses closure because all the variables and return statements are found in the curly bracket
+//counter2 will be better used in scope while counter1 in closure.
 // counter1 code
 function counterMaker() {
   let count = 0;
@@ -64,10 +66,11 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+  let inning = 0;
+return Math.floor(Math.random () * Math.floor(3));
 }
-
+  console.log(inning());
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
@@ -83,9 +86,19 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(inningcallBack, inning){
+  let homeScore= 0;
+  let awayScore = 0;
+  for (let i = 0; i < inning; i++){
+    homeScore = homeScore + inningcallBack();
+    awayScore = awayScore + inningcallBack();
+  }
+  return {
+    Home: homeScore,
+    Away: awayScore,
+  }
 }
+console.log(finalScore,(inning, 9));
 
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
@@ -101,11 +114,13 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
-
+function getInningScore(inningcallBack) {
+return{
+  Home: inningcallBack(),
+  Away: inningcallBack()
 }
-
+}
+console.log(getInningScore(inning));
 
 /* STRETCH: ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
